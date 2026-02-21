@@ -173,14 +173,29 @@ export function RecommenderPage({ onNavigate, onLibraryUpdate }: Props) {
           <div className="genre-controls">
             <label className="form-label">
               Change genre mood:
+            </label>
+            <div className="genre-controls-row">
               <input
                 className="form-input"
                 type="text"
                 value={genreMood}
                 onChange={e => setGenreMood(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && !refreshing && fetchRecs(true)}
                 placeholder="e.g. thriller, romance, fantasy..."
+                disabled={refreshing}
               />
-            </label>
+              <button
+                className="btn btn-primary"
+                onClick={() => fetchRecs(true)}
+                disabled={refreshing}
+              >
+                {refreshing ? (
+                  <><span className="spinner spinner-dark" /> Finding...</>
+                ) : (
+                  'Update'
+                )}
+              </button>
+            </div>
           </div>
 
           <RecommendationList
