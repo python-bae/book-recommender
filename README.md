@@ -1,2 +1,2 @@
-# mini-projects
+# book-recommender
 Vibe coded projects
